@@ -3,6 +3,8 @@
 *
 !*/
 
+build
+
 # Allowed top-level files:
 !.clang-format
 !.clang-tidy

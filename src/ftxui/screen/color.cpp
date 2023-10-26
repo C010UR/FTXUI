@@ -240,6 +240,40 @@ Color Color::Interpolate(float t, const Color& a, const Color& b) {
                     interp(a_b, b_b));  //
 }
 
+
+void Color::getColor(const Color &color, uint8_t* red, uint8_t* green, uint8_t* blue)
+{
+    switch (color.type_) {
+      case ColorType::Palette1: {
+        return;
+      }
+
+      case ColorType::Palette16: {
+        const ColorInfo info = GetColorInfo(Color::Palette16(color.red_));
+        *red = info.red;
+        *green = info.green;
+        *blue = info.blue;
+        return;
+      }
+
+      case ColorType::Palette256: {
+        const ColorInfo info = GetColorInfo(Color::Palette256(color.red_));
+        *red = info.red;
+        *green = info.green;
+        *blue = info.blue;
+        return;
+      }
+
+      case ColorType::TrueColor:
+      default: {
+        *red = color.red_;
+        *green = color.green_;
+        *blue = color.blue_;
+        return;
+      }
+    }
+}
+
 inline namespace literals {
 
 Color operator""_rgb(unsigned long long int combined) {
