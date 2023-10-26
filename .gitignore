@@ -56,3 +56,6 @@ build
 # tools directory:
 !tools/**/*.sh
 !tools/**/*.cpp
+
+# meson
+!meson.build
